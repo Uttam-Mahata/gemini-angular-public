@@ -1,0 +1,38 @@
+<section class="chat-container">
+  <div class="chat-box">
+    <header class="chat-header">
+      <h4>Hello! I am Winbot. I am an AI assistant to help you.</h4>
+    </header>
+    <main class="chat-history">
+      <p-scrollPanel styleClass="custom-scroll-panel" [style]="{ height: 'calc(100vh - 150px)' }">
+        <ng-container *ngIf="showIntroduction">
+          <div class="introduction">
+            <p>Welcome! Ask me anything or say hello to start the conversation.</p>
+            <p>For example, you can ask me about the following:</p>
+            <ul>
+              <li>What is the capital of India?</li>
+              <li>What is the population of China?</li>
+              <li>What is the currency of Japan?</li>
+              <li>What is the capital of France?</li>
+              <li>What is the currency of Australia?</li>
+            </ul>
+          </div>
+        </ng-container>
+        <ng-container *ngFor="let item of chatHistory">
+          <div class="messages" [ngClass]="{'user-message': item.from === 'user', 'bot-message': item.from === 'bot'}">
+            <span class="responses" [innerHTML]="formatText(item.message)"></span>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="loading">
+          <app-skeleton></app-skeleton>
+        </ng-container>
+      </p-scrollPanel>
+    </main>
+    <footer class="chat-input">
+      <input type="text" id="message-input" (keyup.enter)="sendData()" placeholder="Type your message..." [(ngModel)]="prompt" [disabled]="loading" />
+      <button (click)="sendData()" [disabled]="loading" class="send-button">
+        <i class="pi pi-send"></i>
+      </button>
+    </footer>
+  </div>
+</section>
