@@ -40,7 +40,7 @@ export class GeminiService {
   ];
 
   constructor() {
-    this.generativeAI = new GoogleGenerativeAI('AIzaSyDrnUNdl2sQO1wT8nPL_rpHik-pVmR9E6Y');
+    this.generativeAI = new GoogleGenerativeAI('YOUR_API_KEY');
   }
 
   async generateText(prompt: string) {
